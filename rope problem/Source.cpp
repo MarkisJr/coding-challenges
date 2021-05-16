@@ -6,11 +6,13 @@ My personal solution to the rope problem (common coding challenge/interview ques
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 vector<float> factors;
 long result = 1;
+string output = "";
 
 int main()
 {
@@ -32,7 +34,7 @@ int main()
 			factors.push_back(floor(current[i] / 2));
 			factors.push_back(ceil(current[i] / 2));
 		}
-		if (factors.back() <= 3) break;
+		if (factors.front() <= 3) break;
 		else
 		{
 			current.clear();
@@ -44,6 +46,11 @@ int main()
 	for (const auto& e : factors) result *= e;
 	if (result == 1) result = 2;
 	if (result == 0) result = 1;
+	for (int i = 0; i < factors.size(); i++)
+	{
+		output += to_string((int)factors[i]) + ", ";
+	}
 	cout << result << endl;
+	cout << output << endl;
 end:;
 }
