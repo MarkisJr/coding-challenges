@@ -10,22 +10,27 @@ My personal solution to the rope problem (common coding challenge/interview ques
 using namespace std;
 
 vector<float> factors;
-int result = 1;
+long result = 1;
 
 int main()
 {
 	float input = 0;
 	vector<float> current;
 	cin >> input;
+	if (input == 0)
+	{
+		cout << "Cannot accept 0 as input" << endl;
+		goto end;
+	}
+	input = floor(input);
 	current.push_back(input);
-	int i = 1;
 	
 	for(;;)
 	{
-		for (int j = 0; j < current.size(); j++)
+		for (int i = 0; i < current.size(); i++)
 		{
-			factors.push_back(floor(current[j] / 2));
-			factors.push_back(ceil(current[j] / 2));
+			factors.push_back(floor(current[i] / 2));
+			factors.push_back(ceil(current[i] / 2));
 		}
 		if (factors.back() <= 3) break;
 		else
@@ -40,4 +45,5 @@ int main()
 	if (result == 1) result = 2;
 	if (result == 0) result = 1;
 	cout << result << endl;
+end:;
 }
